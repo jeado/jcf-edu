@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="EUC-KR" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="user">
+	<resultMap class="jcf.edu.user.model.UserVO" id="userMap">
+		<result property="userId" column="user_id" />
+		<result property="userName" column="user_name" />
+		<result property="password" column="password" />
+	</resultMap>
+
+	<resultMap class="jcf.edu.user.model.UserAuthoritiesDTO" id="userAuthorityMap">
+		<result property="userId" column="user_id" />
+		<result property="authority" column="authority" />
+	</resultMap>
+
+	<resultMap class="jcf.edu.user.model.UserRoleDTO" id="userRoleMap">
+		<result property="roleName" column="role_name" />
+		<result property="authority" column="authority" />
+	</resultMap>
+
+	<resultMap class="jcf.edu.user.model.UserPicDTO" id="userPicMap">
+		<result property="fileUuid" column="FILE_UUID" />
+		<result property="fileName" column="FILE_NAME" />
+		<result property="filePath" column="FILE_PATH" />
+		<result property="userId" column="USER_ID" />
+	</resultMap>
+
+	<resultMap class="jcf.edu.user.model.UserFollowingDTO" id="userFollowingMap">
+		<result property="userId" column="USER_ID" />
+		<result property="followingId" column="FOLLOWING_ID" />
+	</resultMap>
+	
+
+	<statement id="insertFollow" parameterClass="jcf.edu.user.model.UserFollowingDTO">
+		insert into
+		USER_FOLLOWING (USER_ID,FOLLOWING_ID)
+		values(#userId#,#followingId#)
+	</statement>
+
+	<statement id="deleteFollow" parameterClass="jcf.edu.user.model.UserFollowingDTO">
+		delete from
+		USER_FOLLOWING where USER_ID=#userId# and
+		FOLLOWING_ID=#followingId#
+	</statement>
+
+	<statement id="selectFollow" resultMap="userFollowingMap">
+		select * from USER_FOLLOWING
+		<dynamic prepend="where">
+			<isNotEmpty prepend=" and " property="id">
+				USER_ID=#id#
+			</isNotEmpty>
+		</dynamic>
+	</statement>
+
+	<statement id="selectUser" resultMap="userMap">
+		select * from JCF_USER
+		<dynamic prepend="where">
+			<isNotEmpty prepend=" and " property="id">
+				USER_ID=#id#
+			</isNotEmpty>
+			<isNotEmpty prepend=" and " property="name">
+				USER_NAME=#name#
+			</isNotEmpty>
+		</dynamic>
+	</statement>
+
+	<statement id="insertUser" parameterClass="jcf.edu.user.model.UserVO">
+		insert into
+		JCF_USER (USER_ID,USER_NAME,PASSWORD)
+		values(#userId#,#userName#,#password#)
+	</statement>
+	
+	<statement id="updateUser" parameterClass="jcf.edu.user.model.UserVO">
+		update JCF_USER set
+		USER_NAME=#userName#, PASSWORD=#password# where
+		USER_ID=#userId#
+	</statement>
+	
+	<statement id="deleteUser" parameterClass="jcf.edu.user.model.UserVO">
+		delete from
+		JCF_USER where USER_ID=#userId# and USER_NAME=#userName# and
+		PASSWORD=#password#
+	</statement>
+	
+	
+	<statement id="selectPicInfo" parameterClass="java.util.Map"
+		resultMap="userPicMap">
+		select * from USER_PIC
+		<dynamic prepend="where">
+			<isNotEmpty prepend=" and " property="id">
+				USER_ID=#id#
+			</isNotEmpty>
+			<isNotEmpty prepend=" and " property="fileUuid">
+				FILE_UUID=#fileUuid#
+			</isNotEmpty>
+		</dynamic>
+	</statement>
+
+	<statement id="selectRoles" resultMap="userRoleMap">
+		select * from ROLES
+	</statement>
+
+	<statement id="selectAuthorities" resultMap="userAuthorityMap">
+		select * from AUTHORITIES
+		<dynamic prepend="where">
+			<isNotEmpty prepend=" and " property="id">
+				USER_ID=#id#
+			</isNotEmpty>
+		</dynamic>
+	</statement>
+
+
+	<statement id="insertAuthorities" parameterClass="jcf.edu.user.model.UserAuthoritiesDTO">
+		insert into
+		AUTHORITIES (USER_ID,AUTHORITY) values(#userId#,#authority#)
+	</statement>
+
+
+	<statement id="updateAuthorities" parameterClass="jcf.edu.user.model.UserAuthoritiesDTO">
+		update
+		AUTHORITIES set AUTHORITY=#authority# where USER_ID=#userId#
+	</statement>
+
+	<statement id="insertPic" parameterClass="jcf.edu.user.model.UserPicDTO">
+		insert into USER_PIC
+		(FILE_UUID,FILE_NAME,FILE_PATH,USER_ID)
+		values(#fileUuid#,#fileName#,#filePath#,#userId#)
+	</statement>
+
+	<statement id="updatePic" parameterClass="jcf.edu.user.model.UserPicDTO">
+		update USER_PIC set
+		FILE_UUID=#fileUuid#,FILE_NAME=#fileName#,FILE_PATH=#filePath#,USER_ID=#userId#
+	</statement>
+
+	<statement id="deletePic" parameterClass="String">
+		delete from
+		USER_PIC
+		where FILE_UUID=#fileUuid#
+	</statement>
+
+</sqlMap>
