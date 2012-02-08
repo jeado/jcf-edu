@@ -18,11 +18,36 @@
 
 	<context:component-scan base-package="jcf.iam.admin, jcf.edu" />
 
+	<mvc:resources location="/js/**" mapping="/js/**"/>
+	<mvc:resources location="/css/**" mapping="/css/**"/>
+	<mvc:resources location="/img/**" mapping="/img/**"/>
+	
 	<jcfsua:sua-config auto-config="false"
 		webflow-prefix="/WEB-INF/jsp/">
 		<jcfsua:channel channel-type="WEBFLOW" />
+		<jcfsua:channel channel-type="JSON" />
 	</jcfsua:sua-config>
+	
+<!-- 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	  <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+	  <property name="prefix" value="/WEB-INF/jsp/"/>
+	  <property name="suffix" value=".jsp"/>
+	  <property name="order" value="0"></property>
+	</bean> -->
 
+	 <!-- Exception Resolver -->
+	 <bean id="exceptionMapping" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	     <property name="exceptionMappings">
+	        <props>
+	            <prop key="RuntimeException">
+	                 error
+	            </prop>
+	        </props>
+	     </property>
+	     <property name="defaultErrorView" value="jstlView" />
+	     <property name="order" value="0"/>
+	</bean>
+		
 	<bean id="fileHandler" class="jcf.sua.mvc.file.MciFileHandler">
 		<property name="webFileOperator">
 			<bean class="jcf.sua.ux.webflow.mvc.file.WebFlowFileOperator">
@@ -30,22 +55,11 @@
 				<property name="sender" ref="fileSender" />
 				<property name="uploadEventHandlers">
 					<map>
-						<entry key="/tweeter/upload/file/**/*">
-							<bean
-								class="system.file.UserPicUploadEventHandler"></bean>
+						<entry key="/**/user/*User">
+							<bean class="jcf.edu.user.fileHandler.UserPicUploadEventHandler" />
 						</entry>
 					</map>
 				</property>
-<!-- 				
-				<property name="downloadEventHandlers">
-					<map>
-						<entry key="/file-sample/download/file/**/*">
-							<bean
-								class="jcf.common.system.file.eventHandler.SampleDownloadFromDBEventHandler" />
-						</entry>
-					</map>
-				</property> 
--->
 			</bean>
 		</property>
 	</bean>

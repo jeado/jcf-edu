@@ -1,9 +1,10 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<title>í™˜ì˜í•©ë‹ˆë‹¤.</title>
+	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/bootstrap-responsive.min.css" />
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/bootstrap.min.css" />
 	<style type="text/css">
@@ -21,11 +22,12 @@
 				<a class="btn btn-navbar" data-toggle="collapse"
 					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" href="#">JCF-Twitter</a>
+				</a>
+				<a class="brand" href="<%=request.getContextPath()%>/login">JCF-Twitter</a>
 				<div class="nav-collapse">
 					<ul class="nav">
-						<li><a href="<%=request.getContextPath()%>/login">Login</a></li>
-						<li><a href="<%=request.getContextPath()%>/user/findUsers">ì‚¬ìš©ìžê´€ë¦¬</a></li>
+						<li><a href="<%=request.getContextPath()%>/tweet">Æ®À§ÅÍ</a></li>
+						<li><a href="<%=request.getContextPath()%>/user/findUsers">»ç¿ëÀÚ°ü¸®</a></li>
 						<li><a href="http://about.me/jeado">Contact</a></li>
 					</ul>
 				</div>
@@ -34,8 +36,28 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="hero-unit" align="center">
- 			<h1>2012ë…„ JCF ì‹ ìž…ì‚¬ì› êµìœ¡</h1>
+		<div class="row">
+			<div class="span6 offset1">
+				<h2>2012³â JCF ½ÅÀÔ»ç¿ø ±³À°</h2>
+				<br>
+				<h3>Twitter ¸¸µé±â</h3>
+				<ul>
+					<li>Tweet ÇÏ±â</li>
+					<li>»ç¿ëÀÚ CRUD</li>
+					<li>Follow & Unfollow</li>
+				</ul>
+			</div>
+			<div class="span4">
+				<form class="form-horizontal well" action="loginHandle">
+					<div class="control-group" >
+						USER ID : <input name="userId" class="span3" type="text">
+							<span class="help-inline">»ç¿ëÀÚ °ü¸®¸¦ ÅëÇÏ¿© µî·Ï°¡´É</span>
+					</div>
+					<div class="control-group"">
+						<button type="submit" class="btn btn-primary offset2">ÀÔÀå</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 </body>

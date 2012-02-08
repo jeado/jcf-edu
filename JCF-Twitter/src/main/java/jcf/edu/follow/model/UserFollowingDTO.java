@@ -1,4 +1,4 @@
-package jcf.edu.user.model;
+package jcf.edu.follow.model;
 
 public class UserFollowingDTO {
 

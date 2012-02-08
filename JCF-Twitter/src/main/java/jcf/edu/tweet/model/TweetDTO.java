@@ -6,6 +6,14 @@ public class TweetDTO implements Comparable<TweetDTO> {
 	private String register;
 	private String tweets;
 	private String regDate;
+	
+	public TweetDTO() {
+	}
+	
+	public TweetDTO(String register, String tweets) {
+		this.tweets = tweets;
+		this.register = register;
+	}
 
 	public String getRegDate() {
 		return regDate;

@@ -5,17 +5,7 @@
 	<resultMap class="jcf.edu.user.model.UserVO" id="userMap">
 		<result property="userId" column="user_id" />
 		<result property="userName" column="user_name" />
-		<result property="password" column="password" />
-	</resultMap>
-
-	<resultMap class="jcf.edu.user.model.UserAuthoritiesDTO" id="userAuthorityMap">
-		<result property="userId" column="user_id" />
-		<result property="authority" column="authority" />
-	</resultMap>
-
-	<resultMap class="jcf.edu.user.model.UserRoleDTO" id="userRoleMap">
-		<result property="roleName" column="role_name" />
-		<result property="authority" column="authority" />
+		<result property="userEmail" column="user_email" />
 	</resultMap>
 
 	<resultMap class="jcf.edu.user.model.UserPicDTO" id="userPicMap">
@@ -25,35 +15,12 @@
 		<result property="userId" column="USER_ID" />
 	</resultMap>
 
-	<resultMap class="jcf.edu.user.model.UserFollowingDTO" id="userFollowingMap">
-		<result property="userId" column="USER_ID" />
-		<result property="followingId" column="FOLLOWING_ID" />
-	</resultMap>
+	<statement id="findUser" parameterClass="java.lang.String" resultClass="jcf.edu.user.model.UserVO">
+		select * from TWITTER_USER where USER_ID = #userId#
+	</statement>
 	
-
-	<statement id="insertFollow" parameterClass="jcf.edu.user.model.UserFollowingDTO">
-		insert into
-		USER_FOLLOWING (USER_ID,FOLLOWING_ID)
-		values(#userId#,#followingId#)
-	</statement>
-
-	<statement id="deleteFollow" parameterClass="jcf.edu.user.model.UserFollowingDTO">
-		delete from
-		USER_FOLLOWING where USER_ID=#userId# and
-		FOLLOWING_ID=#followingId#
-	</statement>
-
-	<statement id="selectFollow" resultMap="userFollowingMap">
-		select * from USER_FOLLOWING
-		<dynamic prepend="where">
-			<isNotEmpty prepend=" and " property="id">
-				USER_ID=#id#
-			</isNotEmpty>
-		</dynamic>
-	</statement>
-
 	<statement id="selectUser" resultMap="userMap">
-		select * from JCF_USER
+		select * from TWITTER_USER
 		<dynamic prepend="where">
 			<isNotEmpty prepend=" and " property="id">
 				USER_ID=#id#
@@ -66,26 +33,26 @@
 
 	<statement id="insertUser" parameterClass="jcf.edu.user.model.UserVO">
 		insert into
-		JCF_USER (USER_ID,USER_NAME,PASSWORD)
-		values(#userId#,#userName#,#password#)
+		TWITTER_USER (USER_ID,USER_NAME,USER_EMAIL)
+		values(#userId#,#userName#,#userEmail#)
 	</statement>
 	
 	<statement id="updateUser" parameterClass="jcf.edu.user.model.UserVO">
-		update JCF_USER set
-		USER_NAME=#userName#, PASSWORD=#password# where
+		update TWITTER_USER set
+		USER_NAME=#userName#, USER_EMAIL=#userEmail# where
 		USER_ID=#userId#
 	</statement>
 	
 	<statement id="deleteUser" parameterClass="jcf.edu.user.model.UserVO">
 		delete from
-		JCF_USER where USER_ID=#userId# and USER_NAME=#userName# and
-		PASSWORD=#password#
+		TWITTER_USER where USER_ID=#userId# and USER_NAME=#userName# and
+		USER_EMAIL=#userEmail#
 	</statement>
 	
 	
 	<statement id="selectPicInfo" parameterClass="java.util.Map"
 		resultMap="userPicMap">
-		select * from USER_PIC
+		select * from TWITTER_USER_PIC
 		<dynamic prepend="where">
 			<isNotEmpty prepend=" and " property="id">
 				USER_ID=#id#
@@ -96,45 +63,20 @@
 		</dynamic>
 	</statement>
 
-	<statement id="selectRoles" resultMap="userRoleMap">
-		select * from ROLES
-	</statement>
-
-	<statement id="selectAuthorities" resultMap="userAuthorityMap">
-		select * from AUTHORITIES
-		<dynamic prepend="where">
-			<isNotEmpty prepend=" and " property="id">
-				USER_ID=#id#
-			</isNotEmpty>
-		</dynamic>
-	</statement>
-
-
-	<statement id="insertAuthorities" parameterClass="jcf.edu.user.model.UserAuthoritiesDTO">
-		insert into
-		AUTHORITIES (USER_ID,AUTHORITY) values(#userId#,#authority#)
-	</statement>
-
-
-	<statement id="updateAuthorities" parameterClass="jcf.edu.user.model.UserAuthoritiesDTO">
-		update
-		AUTHORITIES set AUTHORITY=#authority# where USER_ID=#userId#
-	</statement>
-
 	<statement id="insertPic" parameterClass="jcf.edu.user.model.UserPicDTO">
-		insert into USER_PIC
+		insert into TWITTER_USER_PIC
 		(FILE_UUID,FILE_NAME,FILE_PATH,USER_ID)
 		values(#fileUuid#,#fileName#,#filePath#,#userId#)
 	</statement>
 
 	<statement id="updatePic" parameterClass="jcf.edu.user.model.UserPicDTO">
-		update USER_PIC set
+		update TWITTER_USER_PIC set
 		FILE_UUID=#fileUuid#,FILE_NAME=#fileName#,FILE_PATH=#filePath#,USER_ID=#userId#
 	</statement>
 
 	<statement id="deletePic" parameterClass="String">
 		delete from
-		USER_PIC
+		TWITTER_USER_PIC
 		where FILE_UUID=#fileUuid#
 	</statement>
 

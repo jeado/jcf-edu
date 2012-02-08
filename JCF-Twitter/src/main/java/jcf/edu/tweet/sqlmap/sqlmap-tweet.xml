@@ -11,7 +11,7 @@
 	</resultMap>
 
 	<statement id="selectContent" resultMap="tweetMap">
-		select * from CONTENTS
+		select * from twitter_tweet
 		<dynamic prepend="where">
 			<isNotEmpty prepend=" and " property="register">
 				REGISTER=#register#
@@ -22,13 +22,13 @@
 
 	<statement id="insertContent" parameterClass="jcf.edu.tweet.model.TweetDTO">
 		insert into
-		CONTENTS (ID,REGISTER,TWEETS,REG_DATE)
+		twitter_tweet (ID,REGISTER,TWEETS,REG_DATE)
 		values(SLTIS_SCRN_SEQ.nextVal,#register#,#tweets#,systimestamp)
 	</statement>
 
 	<statement id="deleteContent" parameterClass="String">
 		delete from
-		CONTENTS where ID=#id#
+		twitter_tweet where ID=#id#
 	</statement>
 
 </sqlMap>
