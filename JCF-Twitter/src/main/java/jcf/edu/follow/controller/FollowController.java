@@ -24,10 +24,25 @@ public class FollowController {
 
 	}
 
-	@RequestMapping("/unFollow")
+	@RequestMapping("/unfollow")
 	public void unfollow(MciRequest request, MciResponse response) {
 		UserVO currentUser = SessionUtil.getCurrentUser();
 		followService.deleteFollow(currentUser.getUserId(), request.getParam("id"));
 		response.setViewName("redirect:/tweet");
+	}
+	
+	@RequestMapping("/follow.json")
+	public void followJSON(MciRequest request, MciResponse response) {
+		UserVO currentUser = SessionUtil.getCurrentUser();
+		followService.insertFollow(currentUser.getUserId(), request.getParam("id"));
+		response.addSuccessMessage("SUCCESS");
+
+	}
+
+	@RequestMapping("/unfollow.json")
+	public void unfollowJSON(MciRequest request, MciResponse response) {
+		UserVO currentUser = SessionUtil.getCurrentUser();
+		followService.deleteFollow(currentUser.getUserId(), request.getParam("id"));
+		response.addSuccessMessage("SUCCESS");
 	}
 }

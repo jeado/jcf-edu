@@ -48,11 +48,13 @@ public class MciViewResolver implements ViewResolver, Ordered {
 		}
 
 		if(view == null){
-			if (MciRequestContextHolder.get().isMciRequest() && viewName == null) {
+			if (MciRequestContextHolder.get().isMciRequest()) {
 				ModelAndView modelAndView = MciRequestContextHolder.get().getDataSetAccessor().getModelAndView();
-
-				if(modelAndView == null || modelAndView.getViewName() == null){
+				
+				if(modelAndView == null){
 					view = defaultView;
+				} else if(viewName != null){
+					view = pageViewResolver.resolveViewName(viewName, locale);
 				} else {
 					view = pageViewResolver.resolveViewName(modelAndView.getViewName(), locale);
 				}

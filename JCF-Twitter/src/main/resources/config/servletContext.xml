@@ -24,8 +24,8 @@
 	
 	<jcfsua:sua-config auto-config="false"
 		webflow-prefix="/WEB-INF/jsp/">
-		<jcfsua:channel channel-type="WEBFLOW" />
 		<jcfsua:channel channel-type="JSON" />
+		<jcfsua:channel channel-type="WEBFLOW" />
 	</jcfsua:sua-config>
 	
 <!-- 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

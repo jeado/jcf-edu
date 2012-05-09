@@ -1,6 +1,7 @@
 package jcf.edu.tweet.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import jcf.edu.follow.model.UserFollowingDTO;
 import jcf.edu.follow.service.FollowService;
@@ -72,6 +73,56 @@ public class TweetController {
 		int id = Integer.parseInt(request.getParam("id"));
 		tweetService.deleteContent(id);
 		response.setViewName("redirect:/tweet");
+	}
+	
+	@RequestMapping("/tweet.json")
+	public void listTwitterJSON(MciRequest request, MciResponse response) {
+		UserVO userVO = new UserVO();
+		userVO.setUserId("caley2"); 
+		SessionUtil.addUser(userVO);
+		UserVO currentUser = SessionUtil.getCurrentUser();
+		List<TweetDTO> content = tweetService.selectMyContents(currentUser.getUserId());
+		List<UserVO> userList = userService.findUserListWithoutCurrentUserList();
+		List<UserFollowingDTO> followingList = followService.findFollowList(currentUser.getUserId());
+
+		response.set("currentUser",currentUser);
+		response.setList("tweetList", content);
+		response.setList("userList", userList);
+		response.setList("followingList", followingList);
+	}
+	
+	@RequestMapping("/tweet/{userId}.json")
+	public void listTwitterJSON(MciRequest request, MciResponse response, @PathVariable String userId) {
+		UserVO currentUser = SessionUtil.getCurrentUser();
+		List<TweetDTO> content = tweetService.selectMyContents(userId);
+		List<UserVO> userList = userService.findUserListWithoutCurrentUserList();
+		List<UserFollowingDTO> followingList = followService.findFollowList(currentUser.getUserId());
+		
+		response.set("currentUser",currentUser);
+		response.setList("tweetList", content);
+		response.setList("userList", userList);
+		response.setList("followingList", followingList);
+	}
+
+	@RequestMapping("/tweet/insert.json")
+	public void insertTwitterJSON(MciRequest request, MciResponse response){
+		UserVO currentUser = SessionUtil.getCurrentUser();
+		//{"tweetDS":[{ "tweets" : "hello world" }]}
+		TweetDTO tweetDTO = request.get("tweetDS", TweetDTO.class);
+		TweetDTO content = new TweetDTO(currentUser.getUserId(), tweetDTO.getTweets());
+		tweetService.insertContent(content);
+		
+		response.addSuccessMessage("SUCCESS");
+	}
+
+	@RequestMapping("/tweet/delete.json")
+	public void deleteTwitterJSON(MciRequest request, MciResponse response) {
+		//~/tweet/delete.json?id=23
+		// no contents
+		int id = Integer.parseInt(request.getParam("id"));
+		tweetService.deleteContent(id);
+
+		response.addSuccessMessage("SUCCESS");
 	}
 
 }
