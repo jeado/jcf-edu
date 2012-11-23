@@ -119,7 +119,7 @@
     <pathelement location="${maven.repo.local}/commons-beanutils-1.8.3.jar"/>
     <pathelement location="${maven.repo.local}/commons-logging-1.1.1.jar"/>
     <pathelement location="${maven.repo.local}/ojdbc14-10.2.0.4.0.jar"/>
-    <pathelement location="${maven.repo.local}/servlet-api-2.5.jar"/>
+    <pathelement location="${maven.repo.local}/servlet-api.jar"/>
   </path>
   <path id="build.test.classpath">
     <pathelement location="${maven.repo.local}/spring-context-3.0.5.RELEASE.jar"/>
@@ -198,7 +198,7 @@
     <pathelement location="${maven.repo.local}/commons-beanutils-1.8.3.jar"/>
     <pathelement location="${maven.repo.local}/commons-logging-1.1.1.jar"/>
     <pathelement location="${maven.repo.local}/ojdbc14-10.2.0.4.0.jar"/>
-    <pathelement location="${maven.repo.local}/servlet-api-2.5.jar"/>
+    <pathelement location="${maven.repo.local}/servlet-api.jar"/>
   </path>
 
   <!-- ====================================================================== -->
