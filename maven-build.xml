@@ -232,6 +232,9 @@
     <copy todir="${maven.build.outputDir}">
       <fileset dir="${maven.build.resourceDir.0}"/>
     </copy>
+	<copy todir="${maven.build.outputDir}" preservelastmodified="true">
+	    <fileset dir="${maven.build.srcDir.0}" includes="**/sqlmap/*.xml" />
+	</copy>
   </target>
 
   <!-- ====================================================================== -->
