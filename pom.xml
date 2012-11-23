@@ -5,7 +5,7 @@
   <groupId>JCF</groupId>
   <artifactId>JCF-EDU</artifactId>
   <version>0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
 
   <name>JCF-EDU</name>
   <url>http://maven.apache.org</url>
