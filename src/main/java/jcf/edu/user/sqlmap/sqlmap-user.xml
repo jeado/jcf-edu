@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="EUC-KR" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="user">
+	<resultMap class="jcf.edu.user.model.UserVO" id="userMap">
+		<result property="userId" column="user_id" />
+		<result property="userName" column="user_name" />
+		<result property="userEmail" column="user_email" />
+	</resultMap>
+
+	<resultMap class="jcf.edu.user.model.UserPicDTO" id="userPicMap">
+		<result property="fileUuid" column="FILE_UUID" />
+		<result property="fileName" column="FILE_NAME" />
+		<result property="filePath" column="FILE_PATH" />
+		<result property="userId" column="USER_ID" />
+	</resultMap>
+
+	<statement id="findUser" parameterClass="java.lang.String" resultClass="jcf.edu.user.model.UserVO">
+		select * from TWITTER_USER where USER_ID = #userId#
+	</statement>
+	
+	<statement id="selectUser" resultMap="userMap">
+		select * from TWITTER_USER
+		<dynamic prepend="where">
+			<isNotEmpty prepend=" and " property="id">
+				USER_ID=#id#
+			</isNotEmpty>
+			<isNotEmpty prepend=" and " property="name">
+				USER_NAME=#name#
+			</isNotEmpty>
+		</dynamic>
+	</statement>
+
+	<statement id="insertUser" parameterClass="jcf.edu.user.model.UserVO">
+		insert into
+		TWITTER_USER (USER_ID,USER_NAME,USER_EMAIL)
+		values(#userId#,#userName#,#userEmail#)
+	</statement>
+	
+	<statement id="updateUser" parameterClass="jcf.edu.user.model.UserVO">
+		update TWITTER_USER set
+		USER_NAME=#userName#, USER_EMAIL=#userEmail# where
+		USER_ID=#userId#
+	</statement>
+	
+	<statement id="deleteUser" parameterClass="jcf.edu.user.model.UserVO">
+		delete from
+		TWITTER_USER where USER_ID=#userId# and USER_NAME=#userName# and
+		USER_EMAIL=#userEmail#
+	</statement>
+	
+	
+	<statement id="selectPicInfo" parameterClass="java.util.Map"
+		resultMap="userPicMap">
+		select * from TWITTER_USER_PIC
+		<dynamic prepend="where">
+			<isNotEmpty prepend=" and " property="id">
+				USER_ID=#id#
+			</isNotEmpty>
+			<isNotEmpty prepend=" and " property="fileUuid">
+				FILE_UUID=#fileUuid#
+			</isNotEmpty>
+		</dynamic>
+	</statement>
+
+	<statement id="insertPic" parameterClass="jcf.edu.user.model.UserPicDTO">
+		insert into TWITTER_USER_PIC
+		(FILE_UUID,FILE_NAME,FILE_PATH,USER_ID)
+		values(#fileUuid#,#fileName#,#filePath#,#userId#)
+	</statement>
+
+	<statement id="updatePic" parameterClass="jcf.edu.user.model.UserPicDTO">
+		update TWITTER_USER_PIC set
+		FILE_UUID=#fileUuid#,FILE_NAME=#fileName#,FILE_PATH=#filePath#,USER_ID=#userId#
+	</statement>
+
+	<statement id="deletePic" parameterClass="String">
+		delete from
+		TWITTER_USER_PIC
+		where FILE_UUID=#fileUuid#
+	</statement>
+
+</sqlMap>

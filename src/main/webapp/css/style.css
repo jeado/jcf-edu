@@ -1,0 +1,342 @@
+body{
+	padding-top: 60px;		
+	padding-bottom: 40px;
+	background-image: url(../img/background.gif);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-color: #709397;
+	color: #333;
+}
+
+#page-outer {
+	width: 1000px;
+	margin: 0 auto 0 auto;
+}
+
+.page-container {
+	background: rgba(160, 197, 199, 0.9);
+	width: 920px;
+	margin: 0 40px;
+	position: relative;
+	z-index: 1;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	overflow: hidden;
+	text-align: left;
+}
+
+.main-content {
+	width: 540px;
+	float: left;
+	display: inline-block;
+	z-index: 4;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	box-shadow: 0 3px 4px rgba(0,0,0,.5);
+	-moz-box-shadow: 0 3px 4px rgba(0,0,0,.5);
+	-webkit-box-shadow: 0 3px 4px rgba(0,0,0,.5);
+	border-right: 1px	solidid #EEE;
+	position: relative;
+	background: white;
+	height: 100%;
+	min-height: 700px;
+}
+
+.page-header {
+	margin: 0;
+	padding: 0;
+	background: whiteSmoke;
+	border-radius: 5px 5px 0 0;
+	-moz-border-radius: 5px 5px 0 0;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	padding: 15px 20px 0 20px;
+	position: relative;
+	z-index: 2;
+	zoom: 1;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+
+.page-header h2 {
+	font: bold 18px Helvetica Neue,Helvetica,sans-serif;
+	text-shadow: 0 1px 0 white;
+	margin: 0 0 6px 0;
+	color: #999;
+	display: block;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.dashboard {
+	_width: 325px;
+	max-width: 460px;
+	min-width: 340px;
+	position: relative;
+	padding: 12px 20px;
+	padding-right: 18px	9;
+	padding-left: 18px	9;
+	overflow: hidden;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	border-top-right-radius: 5px;
+}
+
+.stream-manager {
+	z-index: 1;
+}
+
+.stream {
+	position: relative;
+	background-color: white;
+	padding-top: 1px;
+	min-height: 800px;
+	margin-top: 1px;
+	zoom: 1;
+}
+
+.stream-items .js-activity {
+	min-height: 52px;
+}
+
+.stream-item {
+	position: relative;
+	border-bottom: 1px solid #EBEBEB;
+	min-height: 60px;
+	clear: both;
+	display: block;
+	outline: none;
+	margin-top: -1px;
+	border-top: 1px solid transparent;
+}
+
+.stream-title h2 {
+	padding: 14px 20px 5px 20px;
+	font-size: 15px;
+	font-weight: 300;
+	margin-bottom: 0;
+	color: #666;
+}
+
+.stream-item-activity-network .activity-supplement .activity-item-tweet .activity-item-tweet-content .tweet-text {
+	padding-right: 8px;
+}
+
+.tweet-text {
+	padding: 0;
+	font-family: Arial,"Helvetica Neue",sans-serif;
+	line-height: 19px;
+	word-wrap: break-word;
+}
+
+.tweet-row {
+	display: block;
+	position: relative;
+	line-height: 15px;
+}
+
+.stream-item-activity-network .activity-supplement .activity-item-tweet .activity-item-tweet-content {
+	border-left: 2px solid #EBEBEB;
+	padding-left: 10px;
+	margin-bottom: 14px;
+}
+
+.stream-item-activity .tweet-content {
+	margin-left: 78px;
+	width: 430px;
+	display: block;
+	clear: both;
+}
+
+.clearfix:after {
+	content: ". ";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+.clearfix {
+	display: inline-block;
+}
+
+.stream-item-activity-network .activity-supplement .activity-item-tweet .activity-item-tweet-content {
+	border-left: 2px solid #EBEBEB;
+	padding-left: 10px;
+	margin-bottom: 14px;
+}
+.stream-item-activity .tweet-content {
+	margin-left: 78px;
+	width: 430px;
+	display: block;
+	clear: both;
+}
+
+.activity-timestamp {
+	float: right;
+	color: #999;
+	font-size: 11px;
+}
+
+.stream-item-activity-network .activity-timestamp {
+	margin: 15px 18px 0 20px;
+	
+}
+
+body.stream-item:hover, body.hovered-stream-item {
+	background-color: rgba(255, 51, 0, 0.1);
+	border-color: rgba(255, 51, 0, 0.15);
+}
+
+.stream-item-activity-line-network img {
+	position: absolute;
+	left: 20px;
+	top: 18px;
+}
+.user-profile-link {
+	cursor: pointer;
+}
+.stream-item-activity-line-network .user .user-profile-link b {
+	font-weight: bold;
+	color: #333;
+}
+.stream-item-activity-line-network s {
+	display: none;
+}
+
+.stream-item-activity-network .stream-item-activity-line {
+	padding: 16px 20px 4px 78px;
+	font-size: 15px;
+}
+.stream-item-activity-line {
+	padding: 18px 20px 0 80px;
+	color: #666;
+	line-height: 16px;
+}
+.stream a {
+	color: #F30;
+}
+
+#session {
+	display: inline-block;
+	padding: 10px 12px;
+	height: 20px;
+	vertical-align: top;
+	cursor: pointer;
+	white-space: nowrap;
+	_width: 0;
+}
+
+#session img {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	vertical-align: top;
+	margin-right: 6px;
+	border: none;
+	cursor: pointer;
+	border-image: initial;
+}
+
+#session #screen-name {
+	color: #BABABA;
+	cursor: pointer;
+	font-weight: normal;
+	display: inline-block;
+	max-width: 200px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.view-all-supplements {
+	display: block;
+	clear: both;
+	font-size: 11px;
+	margin-left: 78px;
+	padding: 0 0 14px 0;
+	margin-top: -10px;
+	background: transparent;
+	outline: none;
+}
+
+.active-links {
+	position: absolute;
+	right: 30px;
+	top: 0;
+}
+
+.dashboard div.user-rec-inner + hr {
+	margin-top: 10px;
+}
+
+hr {
+	border: 0;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	clear: both;
+	height: 0;
+	display: block;
+	margin: 15px 0 15px 0;
+	border-image: initial;
+}
+
+.component h2 {
+	font-size: 16px;
+	font-weight: 300;
+	padding-bottom: 6px;
+}
+
+div.user-rec-inner {
+	display: block;
+}
+
+ul.recommended-followers {
+	padding-bottom: 0;
+}
+.dashboard ul, .dashboard ul li {
+	margin: 0;
+	list-style: none;
+}
+
+.user-static-list-item .user-thumb, .user-small-list-item .user-thumb {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 32px;
+	height: 32px;
+	display: block;
+	position: absolute;
+	top: 2px;
+}
+
+.user-static-list-item .user-thumb img, .user-small-list-item .user-thumb img {
+	width: 32px;
+	height: 32px;
+}
+
+.user-static-list-item .user-name-info, .user-small-list-item .user-name-info {
+	line-height: 17px;
+	outline: none;
+	padding: 0 0 5px 38px;
+	overflow: hidden;
+}
+
+.user-name-and-actions {
+	white-space: nowrap;
+}
+
+.dashboard ul, .dashboard ul li {
+	margin: 0;
+	list-style: none;
+}
+
+.user-small-list-item {
+	position: relative;
+	white-space: nowrap;
+	padding-bottom: 5px;
+	min-height: 40px;
+}
